@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Movie Recommendation System</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+body{
+    margin:0;
+    font-family:Arial,Helvetica,sans-serif;
+    background:#0d1117;
+    color:white;
+}
+
+.navbar{
+    background:#161b22;
+}
+
+.hero{
+    height:90vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    background:linear-gradient(rgba(0,0,0,.7),rgba(0,0,0,.7)),
+    url('https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=1500&q=80');
+    background-size:cover;
+    background-position:center;
+}
+
+.hero h1{
+    font-size:60px;
+    color:#ffc107;
+    font-weight:bold;
+}
+
+.hero p{
+    font-size:22px;
+}
+
+.section-title{
+    text-align:center;
+    margin:50px 0 30px;
+}
+
+.card{
+    background:#1f2937;
+    color:white;
+    border:none;
+    transition:.3s;
+    border-radius:15px;
+}
+
+.card:hover{
+    transform:translateY(-8px);
+}
+
+.workflow{
+    background:#161b22;
+    padding:30px;
+    border-radius:15px;
+}
+
+footer{
+    background:#111827;
+    padding:20px;
+    text-align:center;
+    margin-top:40px;
+}
+</style>
+
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark">
+<div class="container">
+
+<a class="navbar-brand fw-bold text-warning">
+🎬 Movie Recommendation System
+</a>
+
+<div>
+
+<a href="login.html" class="btn btn-outline-light me-2">
+Login
+</a>
+
+<a href="register.html" class="btn btn-warning">
+Register
+</a>
+
+</div>
+
+</div>
+</nav>
+
+<section class="hero">
+
+<div>
+
+<h1>Movie Recommendation System</h1>
+
+<p>
+Find the perfect movie based on your interests.
+</p>
+
+<p>
+Age-Based Filtering | Collaborative Filtering | Personalized Suggestions
+</p>
+
+<a href="register.html" class="btn btn-warning btn-lg">
+Get Started
+</a>
+
+</div>
+
+</section>
+
+<div class="container">
+
+<h2 class="section-title">
+Project Features
+</h2>
+
+<div class="row">
+
+<div class="col-md-3 mb-4">
+
+<div class="card p-4 text-center">
+
+<h4>👤 Registration</h4>
+
+<p>Create your account using Name, Email, Password and Date of Birth.</p>
+
+</div>
+
+</div>
+
+<div class="col-md-3 mb-4">
+
+<div class="card p-4 text-center">
+
+<h4>🔞 Age Restriction</h4>
+
+<p>The system calculates your age from your Date of Birth and hides A-rated movies if you are under 18.</p>
+
+</div>
+
+</div>
+
+<div class="col-md-3 mb-4">
+
+<div class="card p-4 text-center">
+
+<h4>🎯 Recommendations</h4>
+
+<p>Movies are recommended according to your favourite genres and ratings.</p>
+
+</div>
+
+</div>
+
+<div class="col-md-3 mb-4">
+
+<div class="card p-4 text-center">
+
+<h4>🤖 Smart Algorithm</h4>
+
+<p>Collaborative Filtering recommends movies liked by users with similar interests.</p>
+
+</div>
+
+</div>
+
+</div>
+
+<h2 class="section-title">
+System Workflow
+</h2>
+
+<div class="workflow">
+
+<h5>🏠 Home</h5>
+<p>⬇</p>
+
+<h5>📝 Register (Enter Date of Birth)</h5>
+<p>⬇</p>
+
+<h5>🔞 Age Verification</h5>
+<p>⬇</p>
+
+<h5>🔐 Login</h5>
+<p>⬇</p>
+
+<h5>📊 Dashboard</h5>
+<p>⬇</p>
+
+<h5>🎭 Select Favourite Genres</h5>
+<p>⬇</p>
+
+<h5>🤖 Recommendation Engine</h5>
+<p>⬇</p>
+
+<h5>🎬 Recommended Movies</h5>
+<p>⬇</p>
+
+<h5>⭐ Rate & Review Movies</h5>
+
+</div>
+
+</div>
+
+<footer>
+
+<h4>Movie Recommendation System</h4>
+
+<p>
+Java Full Stack Project | Spring Boot | MySQL | HTML | CSS | JavaScript
+</p>
+
+</footer>
+
+</body>
+</html>

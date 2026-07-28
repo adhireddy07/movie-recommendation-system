@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Movie Recommendation</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+
+body{
+    background:#0d1117;
+    color:white;
+    font-family:Arial,Helvetica,sans-serif;
+}
+
+.container{
+    margin-top:60px;
+}
+
+.card{
+    background:#1f2937;
+    border:none;
+    border-radius:15px;
+    color:white;
+}
+
+.card-header{
+    background:#ffc107;
+    color:black;
+    text-align:center;
+    font-size:28px;
+    font-weight:bold;
+}
+
+.btn{
+    width:100%;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="row justify-content-center">
+
+<div class="col-md-7">
+
+<div class="card">
+
+<div class="card-header">
+
+🎬 Movie Recommendation System
+
+</div>
+
+<div class="card-body">
+
+<h4 class="text-center mb-4">
+
+Automatic Movie Recommendation
+
+</h4>
+
+<p>
+
+The system recommends movies automatically based on:
+
+</p>
+
+<ul>
+
+<li>✅ User Age (Date of Birth)</li>
+
+<li>✅ Age Restriction (U, U/A, A)</li>
+
+<li>✅ IMDb Rating</li>
+
+<li>✅ Popular Movies</li>
+
+</ul>
+
+<div class="alert alert-warning">
+
+<h5>🔞 Age Restriction Rules</h5>
+
+<p><strong>Age below 13</strong> → Show only U-rated movies.</p>
+
+<p><strong>Age 13–17</strong> → Show U and U/A movies.</p>
+
+<p><strong>Age 18+</strong> → Show all movies including A-rated movies.</p>
+
+</div>
+
+<a href="recommendation.html" class="btn btn-warning">
+
+View Recommended Movies
+
+</a>
+
+<hr>
+
+<a href="dashboard.html" class="btn btn-outline-light">
+
+⬅ Back to Dashboard
+
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</body>
+</html>

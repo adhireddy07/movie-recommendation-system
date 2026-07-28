@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Movie Details</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+
+body{
+    background:#0d1117;
+    color:white;
+    font-family:Arial,Helvetica,sans-serif;
+}
+
+.navbar{
+    background:#161b22;
+}
+
+.poster{
+    width:100%;
+    border-radius:15px;
+}
+
+.container{
+    margin-top:40px;
+}
+
+.card{
+    background:#1f2937;
+    border:none;
+    color:white;
+}
+
+.badge{
+    font-size:16px;
+}
+
+</style>
+<style>
+
+body{
+    background:#0d1117;
+    color:white;
+    font-family:Arial,Helvetica,sans-serif;
+}
+
+.navbar{
+    background:#161b22;
+}
+
+.poster{
+    width:100%;
+    border-radius:15px;
+}
+
+.container{
+    margin-top:40px;
+}
+
+.card{
+    background:#1f2937;
+    border:none;
+    color:white;
+}
+
+.badge{
+    font-size:16px;
+}
+
+/* 👇 Ee code add cheyyi */
+.star{
+    font-size:35px;
+    cursor:pointer;
+    transition:0.2s;
+}
+
+.star:hover{
+    transform:scale(1.2);
+}
+
+</style>
+
+</head>
+
+<body>
+
+<nav class="navbar navbar-dark">
+
+<div class="container">
+
+<a class="navbar-brand">
+
+🎬 Movie Recommendation System
+
+</a>
+
+<a href="dashboard.html" class="btn btn-warning"></a>
+
+Back
+
+</a>
+
+</div>
+
+</nav>
+
+<div class="container">
+
+<div class="row">
+
+<div class="col-md-4">
+
+<img
+id="poster"
+class="poster"
+src="">
+
+</div>
+
+<div class="col-md-8">
+
+<div class="card p-4">
+<h1 id="title"></h1>
+
+<p>
+<p>
+⭐ IMDb Rating : <b id="rating"></b>
+</p>
+
+</p>
+
+<p>
+
+<p>
+🎭 Genre : <span id="genre"></span>
+</p>
+</p>
+
+<p>
+
+<p>
+🌍 Language : <span id="language"></span>
+</p>
+</p>
+
+<p>
+
+🔞 Age Rating
+
+<span class="badge bg-success">
+
+U/A 13+
+
+</span>
+
+</p>
+
+<p>
+
+<p>
+<p>
+📅 Release Year : <span id="release"></span>
+</p>
+
+</p>
+
+<h4>Description</h4>
+
+
+
+<p id="overview"></p>
+
+
+
+<div class="mt-3">
+<button class="btn btn-danger" id="favoriteBtn">
+❤ Add to Favourite
+
+</button>
+
+<button class="btn btn-primary">
+
+<h5 class="mt-4">Rate this Movie</h5>
+
+<div id="ratingStars" class="mb-3">
+    <span class="star" data-rating="1">⭐</span>
+    <span class="star" data-rating="2">⭐</span>
+    <span class="star" data-rating="3">⭐</span>
+    <span class="star" data-rating="4">⭐</span>
+    <span class="star" data-rating="5">⭐</span>
+</div>
+
+<p>
+Your Rating:
+<b id="userRating">Not Rated</b>
+</p>
+
+</button>
+
+
+<button class="btn btn-success" id="trailerBtn">
+    ▶ Watch Trailer
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<script src="js/config.js"></script>
+<script src="js/movie-details.js"></script>
+
+</body>
+</html>

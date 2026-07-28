@@ -1,0 +1,243 @@
+[
+  {
+    "id": 1,
+    "title": "Interstellar",
+    "genre": "Sci-Fi",
+    "language": "English",
+    "rating": 8.7,
+    "year": 2014,
+    "ageRating": "U/A",
+    "poster": "images/interstellar.jpg"
+  },
+  {
+    "id": 2,
+    "title": "RRR",
+    "genre": "Action",
+    "language": "Telugu",
+    "rating": 8.0,
+    "year": 2022,
+    "ageRating": "U/A",
+    "poster": "images/rrr.jpg"
+  },
+  {
+    "id": 3,
+    "title": "Bahubali",
+    "genre": "Action",
+    "language": "Telugu",
+    "rating": 8.2,
+    "year": 2015,
+    "ageRating": "U/A",
+    "poster": "images/bahubali.jpg"
+  },
+  {
+    "id": 4,
+    "title": "The Conjuring",
+    "genre": "Horror",
+    "language": "English",
+    "rating": 7.5,
+    "year": 2013,
+    "ageRating": "A",
+    "poster": "images/conjuring.jpg"
+  },
+
+{
+"id":5,
+"title":"Inception",
+"genre":"Sci-Fi",
+"language":"English",
+"rating":8.8,
+"year":2010,
+"ageRating":"U/A",
+"poster":"images/inception.jpg"
+},
+{
+"id":6,
+"title":"Avatar",
+"genre":"Sci-Fi",
+"language":"English",
+"rating":7.9,
+"year":2009,
+"ageRating":"U/A",
+"poster":"images/avatar.jpg"
+},
+{
+"id":7,
+"title":"Pushpa",
+"genre":"Action",
+"language":"Telugu",
+"rating":7.6,
+"year":2021,
+"ageRating":"U/A",
+"poster":"images/pushpa.jpg"
+},
+{
+"id":8,
+"title":"Pushpa 2",
+"genre":"Action",
+"language":"Telugu",
+"rating":7.8,
+"year":2024,
+"ageRating":"U/A",
+"poster":"images/pushpa2.jpg"
+},
+{
+"id":9,
+"title":"Salaar",
+"genre":"Action",
+"language":"Telugu",
+"rating":7.4,
+"year":2023,
+"ageRating":"A",
+"poster":"images/salaar.jpg"
+},
+{
+"id":10,
+"title":"Kalki 2898 AD",
+"genre":"Sci-Fi",
+"language":"Telugu",
+"rating":8.1,
+"year":2024,
+"ageRating":"U/A",
+"poster":"images/kalki.jpg"
+},
+{
+"id":11,
+"title":"KGF Chapter 1",
+"genre":"Action",
+"language":"Kannada",
+"rating":8.2,
+"year":2018,
+"ageRating":"U/A",
+"poster":"images/kgf1.jpg"
+},
+{
+"id":12,
+"title":"KGF Chapter 2",
+"genre":"Action",
+"language":"Kannada",
+"rating":8.3,
+"year":2022,
+"ageRating":"U/A",
+"poster":"images/kgf2.jpg"
+},
+{
+"id":13,
+"title":"Jawan",
+"genre":"Action",
+"language":"Hindi",
+"rating":7.0,
+"year":2023,
+"ageRating":"U/A",
+"poster":"images/jawan.jpg"
+},
+{
+"id":14,
+"title":"Pathaan",
+"genre":"Action",
+"language":"Hindi",
+"rating":6.8,
+"year":2023,
+"ageRating":"U/A",
+"poster":"images/pathaan.jpg"
+},
+{
+"id":15,
+"title":"Dangal",
+"genre":"Drama",
+"language":"Hindi",
+"rating":8.3,
+"year":2016,
+"ageRating":"U",
+"poster":"images/dangal.jpg"
+},
+{
+"id":16,
+"title":"3 Idiots",
+"genre":"Comedy",
+"language":"Hindi",
+"rating":8.4,
+"year":2009,
+"ageRating":"U",
+"poster":"images/3idiots.jpg"
+},
+{
+"id":17,
+"title":"The Dark Knight",
+"genre":"Action",
+"language":"English",
+"rating":9.0,
+"year":2008,
+"ageRating":"U/A",
+"poster":"images/darkknight.jpg"
+},
+{
+"id":18,
+"title":"Joker",
+"genre":"Drama",
+"language":"English",
+"rating":8.4,
+"year":2019,
+"ageRating":"A",
+"poster":"images/joker.jpg"
+},
+{
+"id":19,
+"title":"Titanic",
+"genre":"Romance",
+"language":"English",
+"rating":7.9,
+"year":1997,
+"ageRating":"U/A",
+"poster":"images/titanic.jpg"
+},
+{
+"id":20,
+"title":"Frozen",
+"genre":"Animation",
+"language":"English",
+"rating":7.5,
+"year":2013,
+"ageRating":"U",
+"poster":"images/frozen.jpg"
+},
+{
+"id":21,
+"title":"Toy Story",
+"genre":"Animation",
+"language":"English",
+"rating":8.3,
+"year":1995,
+"ageRating":"U",
+"poster":"images/toystory.jpg"
+},
+{
+"id":22,
+"title":"The Lion King",
+"genre":"Animation",
+"language":"English",
+"rating":8.5,
+"year":1994,
+"ageRating":"U",
+"poster":"images/lionking.jpg"
+},
+{
+"id":23,
+"title":"Doctor Strange",
+"genre":"Fantasy",
+"language":"English",
+"rating":7.5,
+"year":2016,
+"ageRating":"U/A",
+"poster":"images/doctorstrange.jpg"
+},
+{
+"id":24,
+"title":"Spider-Man: No Way Home",
+"genre":"Action",
+"language":"English",
+"rating":8.2,
+"year":2021,
+"ageRating":"U/A",
+"poster":"images/spiderman.jpg"
+}
+]

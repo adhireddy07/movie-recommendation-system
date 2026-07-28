@@ -1,0 +1,132 @@
+console.log("movie-details.js loaded");
+const params = new URLSearchParams(window.location.search);
+const movieId = params.get("id");
+console.log(window.location.href);
+console.log(movieId);
+
+fetch(`${BASE_URL}/movie/${movieId}`, {
+    headers: {
+        Authorization: `Bearer ${API_TOKEN}`,
+        "Content-Type": "application/json"
+    }
+})
+.then(response => response.json())
+.then(movie => {
+
+    // Movie Details
+    document.getElementById("poster").src =
+        IMAGE_URL + movie.poster_path;
+
+    document.getElementById("title").textContent =
+        movie.title;
+
+    document.getElementById("rating").textContent =
+        movie.vote_average.toFixed(1);
+
+    document.getElementById("genre").textContent =
+        movie.genres.map(g => g.name).join(", ");
+
+    document.getElementById("language").textContent =
+        movie.original_language.toUpperCase();
+
+    document.getElementById("release").textContent =
+        movie.release_date;
+
+    document.getElementById("overview").textContent =
+        movie.overview;
+
+    // Add to Favorites
+    document.getElementById("favoriteBtn").onclick = function () {
+
+        let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+
+        const alreadyExists = favorites.find(f => f.id === movie.id);
+
+        if (alreadyExists) {
+            alert("Movie is already in Favorites!");
+            return;
+        }
+
+        favorites.push({
+            id: movie.id,
+            title: movie.title,
+            poster: movie.poster_path
+        });
+
+        localStorage.setItem("favorites", JSON.stringify(favorites));
+
+        alert("Movie added to Favorites ❤️");
+    };
+
+    // Watch Trailer
+    document.getElementById("trailerBtn").onclick = async function () {
+
+        try {
+
+            const response = await fetch(
+                `${BASE_URL}/movie/${movieId}/videos`,
+                {
+                    headers: {
+                        Authorization: `Bearer ${API_TOKEN}`,
+                        "Content-Type": "application/json"
+                    }
+                }
+            );
+
+            const data = await response.json();
+            console.log(data);
+            console.log(data.results);
+
+            const trailer = data.results.find(video =>
+                video.site === "YouTube" &&
+                video.type === "Trailer"
+            );
+
+            if (trailer) {
+                window.open(
+                    `https://www.youtube.com/watch?v=${trailer.key}`,
+                    "_blank"
+                );
+            } else {
+                alert("Trailer not available.");
+            }
+
+        } catch (error) {
+            console.log(error);
+            alert("Error loading trailer.");
+        }
+
+    };
+
+})
+.catch(error => {
+    console.log(error);
+    // Rating System
+const stars = document.querySelectorAll(".star");
+const ratingText = document.getElementById("userRating");
+
+// Previous rating load
+const savedRating = localStorage.getItem("rating_" + movie.id);
+
+if(savedRating){
+    ratingText.textContent = savedRating + " / 5";
+}
+
+stars.forEach(star => {
+
+    star.onclick = function(){
+
+        const rating = this.dataset.rating;
+
+        localStorage.setItem(
+            "rating_" + movie.id,
+            rating
+        );
+
+        ratingText.textContent = rating + " / 5";
+
+        alert("Thanks for rating this movie! ⭐");
+    };
+
+});
+});
