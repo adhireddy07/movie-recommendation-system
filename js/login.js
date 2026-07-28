@@ -1,3 +1,4 @@
+console.log("login.js loaded");
 document.getElementById("loginForm").addEventListener("submit", function (e) {
     e.preventDefault();
 
