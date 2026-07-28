@@ -53,14 +53,16 @@ async function searchMovie(movieName) {
 
 function displayMovies(movies) {
 
+console.log(currentUser);
     movieContainer.innerHTML = "";
-    const isAdult = localStorage.getItem("isAdult");
+    const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+const isAdult = currentUser ? currentUser.isAdult : false;
 
-    movies.forEach(movie => {
-        if (movie.adult && isAdult !== "true") {
-    return;
-        }
+movies.forEach(movie => {
 
+    if (movie.adult && !isAdult) {
+        return;
+    }
         const poster = movie.poster_path
             ? IMAGE_URL + movie.poster_path
             : "https://via.placeholder.com/300x450?text=No+Image";

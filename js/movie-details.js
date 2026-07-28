@@ -1,8 +1,7 @@
 console.log("movie-details.js loaded");
+
 const params = new URLSearchParams(window.location.search);
 const movieId = params.get("id");
-console.log(window.location.href);
-console.log(movieId);
 
 fetch(`${BASE_URL}/movie/${movieId}`, {
     headers: {
@@ -74,8 +73,6 @@ fetch(`${BASE_URL}/movie/${movieId}`, {
             );
 
             const data = await response.json();
-            console.log(data);
-            console.log(data.results);
 
             const trailer = data.results.find(video =>
                 video.site === "YouTube" &&
@@ -98,35 +95,35 @@ fetch(`${BASE_URL}/movie/${movieId}`, {
 
     };
 
+    // ⭐ Rating System
+    const stars = document.querySelectorAll(".star");
+    const ratingText = document.getElementById("userRating");
+
+    const savedRating = localStorage.getItem("rating_" + movie.id);
+
+    if (savedRating) {
+        ratingText.textContent = savedRating + " / 5";
+    }
+
+    stars.forEach(star => {
+
+        star.onclick = function () {
+
+            const rating = this.dataset.rating;
+
+            localStorage.setItem(
+                "rating_" + movie.id,
+                rating
+            );
+
+            ratingText.textContent = rating + " / 5";
+
+            alert("Thanks for rating this movie! ⭐");
+        };
+
+    });
+
 })
 .catch(error => {
     console.log(error);
-    // Rating System
-const stars = document.querySelectorAll(".star");
-const ratingText = document.getElementById("userRating");
-
-// Previous rating load
-const savedRating = localStorage.getItem("rating_" + movie.id);
-
-if(savedRating){
-    ratingText.textContent = savedRating + " / 5";
-}
-
-stars.forEach(star => {
-
-    star.onclick = function(){
-
-        const rating = this.dataset.rating;
-
-        localStorage.setItem(
-            "rating_" + movie.id,
-            rating
-        );
-
-        ratingText.textContent = rating + " / 5";
-
-        alert("Thanks for rating this movie! ⭐");
-    };
-
-});
 });
