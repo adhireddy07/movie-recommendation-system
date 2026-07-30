@@ -2,9 +2,10 @@ const searchBtn = document.getElementById("searchBtn");
 const searchInput = document.getElementById("searchInput");
 const movieContainer = document.getElementById("movieContainer");
 
-// Page load ayinappudu trending movies load cheyyi
+// Load Trending Movies
 loadTrendingMovies();
 
+// Search Button
 searchBtn.addEventListener("click", () => {
 
     const movieName = searchInput.value.trim();
@@ -17,52 +18,93 @@ searchBtn.addEventListener("click", () => {
 
 });
 
+// ==========================
+// Load Trending Movies
+// ==========================
+
 async function loadTrendingMovies() {
 
-    const response = await fetch(
-        `${BASE_URL}/trending/movie/week`,
-        {
-            headers: {
-                Authorization: `Bearer ${API_TOKEN}`,
-                "Content-Type": "application/json"
+    try {
+
+        const response = await fetch(
+            `${BASE_URL}/trending/movie/week`,
+            {
+                headers: {
+                    Authorization: `Bearer ${API_TOKEN}`,
+                    "Content-Type": "application/json"
+                }
             }
-        }
-    );
+        );
 
-    const data = await response.json();
+        const data = await response.json();
 
-    displayMovies(data.results);
+        displayMovies(data.results || []);
+
+    } catch (error) {
+
+        console.log(error);
+
+    }
+
 }
+
+// ==========================
+// Search Movie
+// ==========================
 
 async function searchMovie(movieName) {
 
-    const response = await fetch(
-        `${BASE_URL}/search/movie?query=${encodeURIComponent(movieName)}`,
-        {
-            headers: {
-                Authorization: `Bearer ${API_TOKEN}`,
-                "Content-Type": "application/json"
+    try {
+
+        const response = await fetch(
+            `${BASE_URL}/search/movie?query=${encodeURIComponent(movieName)}`,
+            {
+                headers: {
+                    Authorization: `Bearer ${API_TOKEN}`,
+                    "Content-Type": "application/json"
+                }
             }
-        }
-    );
+        );
 
-    const data = await response.json();
+        const data = await response.json();
 
-    displayMovies(data.results);
+        displayMovies(data.results || []);
+
+    } catch (error) {
+
+        console.log(error);
+
+    }
+
 }
+
+// ==========================
+// Display Movies
+// ==========================
 
 function displayMovies(movies) {
 
-console.log(currentUser);
     movieContainer.innerHTML = "";
+
     const currentUser = JSON.parse(localStorage.getItem("currentUser"));
-const isAdult = currentUser ? currentUser.isAdult : false;
+    const isAdult = currentUser ? currentUser.isAdult : false;
 
-movies.forEach(movie => {
+    movies.forEach(movie => {
 
-    if (movie.adult && !isAdult) {
-        return;
-    }
+        const title = (movie.title || "").toLowerCase();
+
+        const isBlockedMovie = blockedMovies.some(name =>
+            title.includes(name.toLowerCase())
+        );
+
+        const hasBlockedKeyword = blockedKeywords.some(word =>
+            title.includes(word.toLowerCase())
+        );
+
+        if (!isAdult && (movie.adult || isBlockedMovie || hasBlockedKeyword)) {
+            return;
+        }
+
         const poster = movie.poster_path
             ? IMAGE_URL + movie.poster_path
             : "https://via.placeholder.com/300x450?text=No+Image";
@@ -72,9 +114,9 @@ movies.forEach(movie => {
 
             <div class="card bg-dark text-white h-100">
 
-                <img src="${poster}" class="card-img-top">
+                <img src="${poster}" class="card-img-top" alt="${movie.title}">
 
-                <div class="card-body">
+                <div class="card-body d-flex flex-column">
 
                     <h5>${movie.title}</h5>
 
@@ -83,7 +125,7 @@ movies.forEach(movie => {
                     <p>${movie.release_date || "N/A"}</p>
 
                     <button
-                        class="btn btn-warning w-100"
+                        class="btn btn-warning mt-auto"
                         onclick="viewMovie(${movie.id})">
                         View Details
                     </button>
@@ -94,10 +136,27 @@ movies.forEach(movie => {
 
         </div>
         `;
+
     });
+
+    if (movieContainer.innerHTML === "") {
+
+        movieContainer.innerHTML = `
+            <div class="col-12 text-center mt-5">
+                <h3>No movies found.</h3>
+            </div>
+        `;
+
+    }
 
 }
 
+// ==========================
+// View Movie
+// ==========================
+
 function viewMovie(id) {
+
     window.location.href = `movie-details.html?id=${id}`;
+
 }

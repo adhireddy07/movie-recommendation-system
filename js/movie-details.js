@@ -3,6 +3,7 @@ console.log("movie-details.js loaded");
 const params = new URLSearchParams(window.location.search);
 const movieId = params.get("id");
 
+// Load Movie Details
 fetch(`${BASE_URL}/movie/${movieId}`, {
     headers: {
         Authorization: `Bearer ${API_TOKEN}`,
@@ -11,6 +12,37 @@ fetch(`${BASE_URL}/movie/${movieId}`, {
 })
 .then(response => response.json())
 .then(movie => {
+const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+const isAdult = currentUser ? currentUser.isAdult : false;
+
+const title = movie.title.toLowerCase();
+
+const isBlockedMovie = blockedMovies.some(name =>
+    title.includes(name.toLowerCase())
+);
+
+const hasBlockedKeyword = blockedKeywords.some(word =>
+    title.includes(word.toLowerCase())
+);
+
+if (!isAdult && (movie.adult || isBlockedMovie || hasBlockedKeyword)) {
+
+    document.body.innerHTML = `
+        <div class="container text-center mt-5">
+            <h1>🚫 Access Denied</h1>
+            <h4>This movie is restricted for users under 18.</h4>
+
+            <a href="dashboard.html" class="btn btn-warning mt-4">
+                Back to Dashboard
+            </a>
+        </div>
+    `;
+
+    return;
+}
+
+    console.log("Movie:", movie.title);
+    console.log("Adult:", movie.adult);
 
     // Movie Details
     document.getElementById("poster").src =
@@ -34,12 +66,17 @@ fetch(`${BASE_URL}/movie/${movieId}`, {
     document.getElementById("overview").textContent =
         movie.overview;
 
-    // Add to Favorites
+    // ==========================
+    // Favorites
+    // ==========================
+
     document.getElementById("favoriteBtn").onclick = function () {
 
-        let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+        let favorites =
+            JSON.parse(localStorage.getItem("favorites")) || [];
 
-        const alreadyExists = favorites.find(f => f.id === movie.id);
+        const alreadyExists =
+            favorites.find(f => f.id === movie.id);
 
         if (alreadyExists) {
             alert("Movie is already in Favorites!");
@@ -52,12 +89,18 @@ fetch(`${BASE_URL}/movie/${movieId}`, {
             poster: movie.poster_path
         });
 
-        localStorage.setItem("favorites", JSON.stringify(favorites));
+        localStorage.setItem(
+            "favorites",
+            JSON.stringify(favorites)
+        );
 
         alert("Movie added to Favorites ❤️");
     };
 
-    // Watch Trailer
+    // ==========================
+    // Trailer
+    // ==========================
+
     document.getElementById("trailerBtn").onclick = async function () {
 
         try {
@@ -80,48 +123,94 @@ fetch(`${BASE_URL}/movie/${movieId}`, {
             );
 
             if (trailer) {
+
                 window.open(
                     `https://www.youtube.com/watch?v=${trailer.key}`,
                     "_blank"
                 );
+
             } else {
+
                 alert("Trailer not available.");
+
             }
 
         } catch (error) {
+
             console.log(error);
+
             alert("Error loading trailer.");
+
         }
 
     };
 
-    // ⭐ Rating System
-    const stars = document.querySelectorAll(".star");
-    const ratingText = document.getElementById("userRating");
+    // ==========================
+    // Rating System
+    // ==========================
 
-    const savedRating = localStorage.getItem("rating_" + movie.id);
+    const stars =
+        document.querySelectorAll(".star");
+
+    const ratingText =
+        document.getElementById("userRating");
+
+    const ratingKey =
+        "rating_" + movie.id;
+
+    const savedRating =
+        localStorage.getItem(ratingKey);
 
     if (savedRating) {
-        ratingText.textContent = savedRating + " / 5";
+
+        ratingText.textContent =
+            savedRating + " / 5";
+
+        highlightStars(savedRating);
+
     }
 
     stars.forEach(star => {
 
-        star.onclick = function () {
+        star.addEventListener("click", function () {
 
-            const rating = this.dataset.rating;
+            const rating =
+                Number(this.dataset.rating);
 
             localStorage.setItem(
-                "rating_" + movie.id,
+                ratingKey,
                 rating
             );
 
-            ratingText.textContent = rating + " / 5";
+            ratingText.textContent =
+                rating + " / 5";
 
-            alert("Thanks for rating this movie! ⭐");
-        };
+            highlightStars(rating);
+
+           ratingText.textContent = rating + " / 5 (Saved)"; 
+        });
 
     });
+
+    function highlightStars(rating) {
+
+        stars.forEach(star => {
+
+            if (
+                Number(star.dataset.rating) <= rating
+            ) {
+
+                star.style.color = "gold";
+
+            } else {
+
+                star.style.color = "white";
+
+            }
+
+        });
+
+    }
 
 })
 .catch(error => {
