@@ -1,3 +1,8 @@
+const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+
+if (!currentUser) {
+    window.location.href = "login.html";
+}
 const searchBtn = document.getElementById("searchBtn");
 const searchInput = document.getElementById("searchInput");
 const movieContainer = document.getElementById("movieContainer");
@@ -158,5 +163,44 @@ function displayMovies(movies) {
 function viewMovie(id) {
 
     window.location.href = `movie-details.html?id=${id}`;
+
+}
+function logout() {
+
+    const confirmLogout = confirm("Are you sure you want to logout?");
+
+    if (confirmLogout) {
+
+        localStorage.removeItem("currentUser");
+
+        alert("Logged out successfully!");
+
+        window.location.href = "login.html";
+
+    }
+
+}
+const lastMovie = JSON.parse(localStorage.getItem("continueMovie"));
+
+if (lastMovie) {
+
+    const section = document.getElementById("continueSection");
+    const title = document.getElementById("continueTitle");
+
+    if (section && title) {
+        section.style.display = "block";
+        title.innerText = lastMovie.title;
+    }
+
+}
+
+function resumeMovie() {
+
+    const movie = JSON.parse(localStorage.getItem("continueMovie"));
+
+    if (movie) {
+        localStorage.setItem("selectedMovie", JSON.stringify(movie));
+        window.location.href = "movie-details.html";
+    }
 
 }

@@ -65,7 +65,7 @@ if (!isAdult && (movie.adult || isBlockedMovie || hasBlockedKeyword)) {
 
     document.getElementById("overview").textContent =
         movie.overview;
-
+localStorage.setItem("continueMovie", JSON.stringify(movie));
     // ==========================
     // Favorites
     // ==========================

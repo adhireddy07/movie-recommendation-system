@@ -85,14 +85,35 @@ Profile
 </a>
 
 <a href="feedback.html" class="btn btn-warning">
+
 Feedback
 </a>
 
+<a href="#" class="btn btn-danger ms-2" onclick="logout()">
+    Logout
+</a>
 </div>
 
 </nav>
 
 <div class="container mt-4">
+   <div id="continueSection" class="mb-5" style="display:none;">
+
+    <h2 class="text-warning mb-3">
+        ▶ Continue Watching
+    </h2>
+
+    <div class="card bg-dark text-white p-3">
+
+        <h4 id="continueTitle"></h4>
+
+        <button class="btn btn-warning mt-2" onclick="resumeMovie()">
+            Resume
+        </button>
+
+    </div>
+
+</div> 
 
 <h2 class="mb-4">
 🔥 Trending Movies
