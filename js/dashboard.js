@@ -204,3 +204,43 @@ function resumeMovie() {
     }
 
 }
+// ==========================
+// Recently Watched
+// ==========================
+
+const watchHistory = JSON.parse(localStorage.getItem("watchHistory")) || [];
+
+const historySection = document.getElementById("historySection");
+const historyContainer = document.getElementById("historyContainer");
+
+if (watchHistory.length > 0) {
+
+    historySection.style.display = "block";
+
+    watchHistory.forEach(movie => {
+
+        const poster = movie.poster
+            ? IMAGE_URL + movie.poster
+            : "https://via.placeholder.com/300x450?text=No+Image";
+
+        historyContainer.innerHTML += `
+        <div class="col-md-3 mb-4">
+
+            <div class="card bg-dark text-white h-100">
+
+                <img src="${poster}" class="card-img-top">
+
+                <div class="card-body">
+
+                    <h5>${movie.title}</h5>
+
+                </div>
+
+            </div>
+
+        </div>
+        `;
+
+    });
+
+}

@@ -1,48 +1,84 @@
 const container = document.getElementById("favoriteContainer");
 
-const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
 
-if(favorites.length===0){
+// ==========================
+// No Favorites
+// ==========================
 
-    container.innerHTML="<h3>No Favorite Movies Yet ❤️</h3>";
+if (favorites.length === 0) {
 
-}else{
+    container.innerHTML = `
+        <div class="col-12 text-center mt-5">
 
-favorites.forEach(movie=>{
+            <h2 class="text-warning">
+                ❤️ No Favorite Movies Yet
+            </h2>
 
-const poster=movie.poster
-?`https://image.tmdb.org/t/p/w500${movie.poster}`
-:"https://via.placeholder.com/300x450";
+            <p class="text-light">
+                Go to Dashboard and add your favorite movies.
+            </p>
 
-container.innerHTML+=`
+            <a href="dashboard.html" class="btn btn-warning">
+                Browse Movies
+            </a>
 
-<div class="col-md-3 mb-4">
+        </div>
+    `;
 
-<div class="card text-white">
+} else {
 
-<img src="${poster}" class="card-img-top">
+    favorites.forEach(movie => {
 
-<div class="card-body">
+        const poster = movie.poster
+            ? `https://image.tmdb.org/t/p/w500${movie.poster}`
+            : "https://via.placeholder.com/300x450?text=No+Image";
 
-<h5>${movie.title}</h5>
+        container.innerHTML += `
 
-<button
-class="btn btn-danger w-100 mt-2"
-onclick="removeFavorite(${movie.id})">
-Remove
-</button>
+        <div class="col-md-3 mb-4">
 
-</div>
+            <div class="card text-white h-100">
 
-`;
+                <img src="${poster}" class="card-img-top">
 
-});
+                <div class="card-body d-flex flex-column">
+
+                    <h5>${movie.title}</h5>
+
+                    <button
+                        class="btn btn-danger mt-auto"
+                        onclick="removeFavorite(${movie.id})">
+                        🗑 Remove
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        `;
+
+    });
 
 }
-function removeFavorite(id){
 
-    let favorites =
-    JSON.parse(localStorage.getItem("favorites")) || [];
+// ==========================
+// Remove Favorite
+// ==========================
+
+function removeFavorite(id) {
+
+    const confirmDelete = confirm(
+        "Remove this movie from Favorites?"
+    );
+
+    if (!confirmDelete) {
+        return;
+    }
+
+    let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
 
     favorites = favorites.filter(movie => movie.id !== id);
 
@@ -50,6 +86,8 @@ function removeFavorite(id){
         "favorites",
         JSON.stringify(favorites)
     );
+
+    alert("Movie removed from Favorites!");
 
     location.reload();
 

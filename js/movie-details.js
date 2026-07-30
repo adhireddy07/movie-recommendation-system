@@ -66,6 +66,27 @@ if (!isAdult && (movie.adult || isBlockedMovie || hasBlockedKeyword)) {
     document.getElementById("overview").textContent =
         movie.overview;
 localStorage.setItem("continueMovie", JSON.stringify(movie));
+// ==========================
+// Save Watch History
+// ==========================
+
+let watchHistory = JSON.parse(localStorage.getItem("watchHistory")) || [];
+
+// Remove duplicate if already exists
+watchHistory = watchHistory.filter(item => item.id !== movie.id);
+
+// Add latest movie to beginning
+watchHistory.unshift({
+    id: movie.id,
+    title: movie.title,
+    poster: movie.poster_path,
+    genre_ids: movie.genre_ids
+});
+
+// Keep only last 10 movies
+watchHistory = watchHistory.slice(0, 10);
+
+localStorage.setItem("watchHistory", JSON.stringify(watchHistory));
     // ==========================
     // Favorites
     // ==========================
