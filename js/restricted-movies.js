@@ -3,38 +3,36 @@
 // ===============================
 
 const blockedKeywords = [
-
     "sex",
-    "porn",
-    "xxx",
-    "adult",
+    "sexual",
     "erotic",
-    "nudity",
+    "erotica",
     "nude",
-    "hentai",
-    "uncensored",
+    "nudity",
+    "porn",
+    "pornography",
+    "xxx",
     "escort",
+    "prostitute",
+    "fetish",
+    "bdsm",
+    "intimate",
+    "explicit",
+    "18+",
+    "adult",
+    "uncut",
+    "hot",
+    "sensual",
+    "seduction",
     "lust",
     "affair",
-    "mistress",
-    "seduction",
-    "fetish",
-    "orgy",
-    "intimacy",
-    "desire",
-    "bdsm",
-    "playboy",
-    "playmate",
-    "camgirl",
     "strip",
     "stripper",
-    "hookup",
-    "virgin",
-    "hotwife",
-    "swinger",
-    "explicit"
-
+    "playboy",
+    "playmate",
+    "voilence"
 ];
+  
 
 // ===============================
 // Restricted Movies
@@ -170,6 +168,29 @@ const blockedMovies = [
     "Benedetta",
     "salaar",
     "Animal",
-    "toxic"
+    "toxic",
+"A Serbian Film",
+"The Human Centipede",
+"The Human Centipede 2",
+"The Human Centipede 3",
+"Salò",
+"Cannibal Holocaust",
+"Antichrist",
+"I Spit on Your Grave",
+"I Spit on Your Grave 2",
+"I Spit on Your Grave 3",
+"Hostel",
+"Hostel: Part II",
+"Hostel: Part III",
+"Saw",
+"Saw II",
+"Saw III",
+"Saw IV",
+"Saw V",
+"Saw VI",
+"Saw 3D",
+"Terrifier",
+"Terrifier 2",
+"Terrifier 3"
 
 ];

@@ -29,6 +29,24 @@ body{
     margin:auto;
     display:block;
 }
+.card{
+    backdrop-filter:blur(15px);
+    box-shadow:0 0 25px rgba(255,193,7,.25);
+}
+
+.profile-img{
+    border:4px solid #ffc107;
+    box-shadow:0 0 20px rgba(255,193,7,.5);
+}
+
+.table th{
+    color:#ffc107;
+    width:40%;
+}
+
+.table td{
+    color:white;
+}
 
 </style>
 
@@ -72,8 +90,27 @@ class="profile-img">
 <th>Age Restriction</th>
 <td id="restriction"></td>
 </tr>
+<tr>
+<th>🎬 Movies Watched</th>
+<td id="watched"></td>
+</tr>
 
-</table>    `
+<tr>
+<th>❤️ Favorite Movies</th>
+<td id="favorites"></td>
+</tr>
+
+<tr>
+<th>⭐ Ratings Given</th>
+<td id="ratings"></td>
+</tr>
+
+<tr>
+<th>▶ Last Watched</th>
+<td id="lastMovie"></td>
+</tr>
+
+</table>    
 
 </table>
 

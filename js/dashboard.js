@@ -244,3 +244,124 @@ if (watchHistory.length > 0) {
     });
 
 }
+// ==========================
+// Smart Recommendations
+// ==========================
+
+const recommendSection = document.getElementById("recommendSection");
+const recommendContainer = document.getElementById("recommendContainer");
+
+loadRecommendations();
+
+async function loadRecommendations() {
+
+    const watchHistory = JSON.parse(localStorage.getItem("watchHistory")) || [];
+
+    if (watchHistory.length === 0) return;
+
+    recommendSection.style.display = "block";
+
+    // Last watched movie
+    const lastMovie = watchHistory[0];
+
+    try {
+
+        const response = await fetch(
+            `${BASE_URL}/movie/${lastMovie.id}/recommendations`,
+            {
+                headers: {
+                    Authorization: `Bearer ${API_TOKEN}`,
+                    "Content-Type": "application/json"
+                }
+            }
+        );
+
+        const data = await response.json();
+
+        displayRecommendations(data.results || []);
+
+    } catch (error) {
+
+        console.log(error);
+
+    }
+
+}
+
+function displayRecommendations(movies) {
+
+    recommendContainer.innerHTML = "";
+
+    movies.slice(0,8).forEach(movie => {
+
+        const poster = movie.poster_path
+            ? IMAGE_URL + movie.poster_path
+            : "https://via.placeholder.com/300x450?text=No+Image";
+
+        recommendContainer.innerHTML += `
+
+        <div class="col-md-3 mb-4">
+
+            <div class="card bg-dark text-white h-100">
+
+                <img src="${poster}" class="card-img-top">
+
+                <div class="card-body d-flex flex-column">
+
+                    <h5>${movie.title}</h5>
+
+                    <p>⭐ ${movie.vote_average.toFixed(1)}</p>
+
+                    <button
+                        class="btn btn-warning mt-auto"
+                        onclick="viewMovie(${movie.id})">
+
+                        View Details
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        `;
+
+    });
+
+}
+window.addEventListener("load", function () {
+    document.body.classList.add("loaded");
+});
+// ==========================
+// Theme Toggle
+// ==========================
+
+const themeBtn = document.getElementById("themeBtn");
+
+// Load saved theme
+const savedTheme = localStorage.getItem("theme");
+
+if(savedTheme === "light"){
+    document.body.classList.add("light-mode");
+    themeBtn.innerHTML = "☀️ Light";
+}
+
+themeBtn.onclick = function(){
+
+    document.body.classList.toggle("light-mode");
+
+    if(document.body.classList.contains("light-mode")){
+
+        localStorage.setItem("theme","light");
+        themeBtn.innerHTML = "☀️ Light";
+
+    }else{
+
+        localStorage.setItem("theme","dark");
+        themeBtn.innerHTML = "🌙 Dark";
+
+    }
+
+};
