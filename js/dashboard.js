@@ -9,7 +9,6 @@ const movieContainer = document.getElementById("movieContainer");
 
 // Load Trending Movies
 loadTrendingMovies();
-
 // Search Button
 searchBtn.addEventListener("click", () => {
 
