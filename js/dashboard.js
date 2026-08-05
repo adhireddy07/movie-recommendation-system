@@ -12,6 +12,9 @@ loadTrendingMovies();
 // Search Button
 searchBtn.addEventListener("click", () => {
 
+    console.log("Search Button Clicked");
+    
+
     const movieName = searchInput.value.trim();
 
     if (movieName === "") {
