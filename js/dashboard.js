@@ -74,6 +74,7 @@ async function searchMovie(movieName) {
         );
 
         const data = await response.json();
+        alert(JSON.stringify(data));
 
         displayMovies(data.results || []);
 
@@ -90,6 +91,7 @@ async function searchMovie(movieName) {
 // ==========================
 
 function displayMovies(movies) {
+    alert("Display Function Called");
 
     movieContainer.innerHTML = "";
 
@@ -97,7 +99,7 @@ function displayMovies(movies) {
     const isAdult = currentUser ? currentUser.isAdult : false;
 
     movies.forEach(movie => {
-
+        console.log(movie);
         const title = (movie.title || "").toLowerCase();
 
         const isBlockedMovie = blockedMovies.some(name =>
@@ -111,7 +113,7 @@ function displayMovies(movies) {
         if (!isAdult && (movie.adult || isBlockedMovie || hasBlockedKeyword)) {
             return;
         }
-
+        console.log(movie.title, movie.vote_average);
         const poster = movie.poster_path
             ? IMAGE_URL + movie.poster_path
             : "https://via.placeholder.com/300x450?text=No+Image";
