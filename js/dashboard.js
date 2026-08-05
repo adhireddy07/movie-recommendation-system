@@ -74,7 +74,7 @@ async function searchMovie(movieName) {
         );
 
         const data = await response.json();
-        alert(JSON.stringify(data));
+        
 
         displayMovies(data.results || []);
 
@@ -91,7 +91,7 @@ async function searchMovie(movieName) {
 // ==========================
 
 function displayMovies(movies) {
-    alert("Display Function Called");
+   
 
     movieContainer.innerHTML = "";
 
@@ -99,7 +99,7 @@ function displayMovies(movies) {
     const isAdult = currentUser ? currentUser.isAdult : false;
 
     movies.forEach(movie => {
-        console.log(movie);
+       
         const title = (movie.title || "").toLowerCase();
 
         const isBlockedMovie = blockedMovies.some(name =>
