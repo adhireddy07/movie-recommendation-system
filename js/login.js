@@ -13,18 +13,27 @@ form.addEventListener("submit", async (e) => {
 
     try {
 
-        const userCredential = await signInWithEmailAndPassword(
-            auth,
-            email,
-            password
-        );
+        await signInWithEmailAndPassword(auth, email, password);
 
-        const user = {
-            email: userCredential.user.email,
-            isAdult: true
-        };
+        // Get all registered users
+        const users = JSON.parse(localStorage.getItem("users")) || [];
 
-        localStorage.setItem("currentUser", JSON.stringify(user));
+        // Find current user
+        const user = users.find(u => u.email === email);
+
+        if (user) {
+
+            localStorage.setItem("currentUser", JSON.stringify(user));
+
+        } else {
+
+            localStorage.setItem("currentUser", JSON.stringify({
+                email: email,
+                age: 18,
+                isAdult: true
+            }));
+
+        }
 
         alert("Login Successful!");
 
@@ -33,6 +42,7 @@ form.addEventListener("submit", async (e) => {
     } catch (error) {
 
         alert(error.message);
+        console.error(error);
 
     }
 

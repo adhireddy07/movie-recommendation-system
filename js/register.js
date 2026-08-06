@@ -1,15 +1,16 @@
 import { auth } from "./firebase.js";
 import {
-  createUserWithEmailAndPassword
+    createUserWithEmailAndPassword
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
 const form = document.getElementById("registerForm");
 
 form.addEventListener("submit", async (e) => {
+
     e.preventDefault();
 
-    const fullName = document.getElementById("fullName").value;
-    const email = document.getElementById("email").value;
+    const fullName = document.getElementById("fullName").value.trim();
+    const email = document.getElementById("email").value.trim();
     const password = document.getElementById("password").value;
     const dob = document.getElementById("dob").value;
 
@@ -30,11 +31,19 @@ form.addEventListener("submit", async (e) => {
         const userData = {
             fullName,
             email,
+            dob,
             age,
             isAdult: age >= 18
         };
 
-        localStorage.setItem("currentUser", JSON.stringify(userData));
+        // Save all users in localStorage
+        let users = JSON.parse(localStorage.getItem("users")) || [];
+
+        // Prevent duplicate users
+        if (!users.some(user => user.email === email)) {
+            users.push(userData);
+            localStorage.setItem("users", JSON.stringify(users));
+        }
 
         alert("Registration Successful!");
 
@@ -43,6 +52,8 @@ form.addEventListener("submit", async (e) => {
     } catch (error) {
 
         alert(error.message);
+        console.error(error);
 
     }
+
 });
